@@ -1,5 +1,4 @@
-const express = require('express') //se llama al modulo de express
-const handlebars = require('express-handlebars')
+const express = require('express')
 const { Server: HttpServer } = require('http')
 const { Server: IoServer} = require('socket.io')
 const { options } = require('./options/mariaDB.js')
@@ -12,8 +11,9 @@ const liteKnex = require('knex')(
   }
 )
 
-/* creating DBs */
+/* --------------Creating DBs ------------------------------------*/
 
+//creating DBs
 const prodTableName = 'products'
 const messageTableName = 'messages'
 
@@ -26,9 +26,6 @@ knex.schema
   })
   .then(() => console.log('products table created'))
   .catch((err) => console.log(err))
-  .finally(() => {
-    knex.destroy()
-  })
 
   liteKnex.schema
   .createTable(messageTableName, (table) => {
@@ -39,19 +36,23 @@ knex.schema
   })
   .then(() => console.log('messages table created'))
   .catch((err) => console.log(err))
-  .finally(() => {
-    knex.destroy()
-  })
 
-/* constantes y funciones de almacenamiento en DB*/
-//creating DBs
+/*----------------STORAGE: memory and db interaction functions --------------------*/
 
 let messages = []
 let products = []
 
-/* adds requested product to db table */
+/*refreshes both lists at once*/
+async function refreshTables(){
+  await dbLoadProds()
+  await dbLoadMessages()
+  console.log(products)
+}
+
+/* ---------------------- Products: DB interaction */
+
 async function productToDb(product) {
-   await knex(prodTableName).insert(product)
+    await knex(prodTableName).insert(product)
    .then(() => {
      console.log('data added')
    })
@@ -59,25 +60,17 @@ async function productToDb(product) {
      console.log(err)
      throw err
    })
-   .finally(
-     knex.destroy()
-   )
 }
 
 /* loads products form db */
 async function dbLoadProds() {
-  await knex.from(prodTableName).select('*')
-  .then((rows) => {
-    products = [...rows]
-  })
-  .catch((err) => {
+  products = await knex.from(prodTableName).select('*')
+    .catch((err) => {
     console.log(err)
   })
-  .finally(
-    knex.destroy()
-  )
 }
 
+/* --------------------------------------Messages: DB interaction */
 function messageToDB(message) {
   liteKnex(messageTableName).insert(message)
   .then(() => {
@@ -87,64 +80,54 @@ function messageToDB(message) {
     console.log(err)
     throw err
   })
-  .finally(
-    knex.destroy()
-  )
 }
 
-function dbLoadMessages() {
-  liteKnex.from(messageTableName).select('*')
-  .then((rows) => {
-    messages = [...rows]
-  })
+async function dbLoadMessages() {
+  messages = await liteKnex.from(messageTableName).select('*')
   .catch((err) => {
     console.log(err)
   })
-  .finally(() => {
-    knex.destroy()
-  })
+  console.log(messages)
 }
 
 
-/* ------------------------- */
+/* ----------- SERVER -------------- */
 
 const app = express()
 const httpServer = new HttpServer(app)
-const io = new IoServer(httpServer)
+const io = new IoServer(httpServer) //Webockets Instance 
 
-// Se crea el servidor, se elige el numero de puerto. Se asigna ruta a archivos estaticos
+// Server set and running
 const PORT = 3000
 
 httpServer.listen(PORT, () => console.log('SERVER ON'))
 httpServer.on('error', (error) => console.log({mensaje: `hubo un error :( ${error}`}))
 app.use(express.static('public'))
 
+
+//sockets----------------
+
 io.on('connection', (socket) => {
-    // "connection" se ejecuta la primera vez que se abre una nueva conexión
-    console.log('Usuario conectado')
-    // Se imprimirá solo la primera vez que se ha abierto la conexión
-    socket.emit('history', messages)
-    socket.on('notification', (data)=>{
-        console.log(data)
-    })
-    socket.on('message', (data) =>{
-        messageToDB(data)  
-      //messages.push(data)
-        console.log(data)
-        io.sockets.emit('refresh', messages)
-    })
-    dbLoadMessages()
-    socket.emit('refresh', messages)
-    
-    /* product sockets------------- */
-    socket.emit('refreshProds', products)
-    
-    socket.on('newProd', async (data) =>{
-        await productToDb(data)
-        //data = {...data, id: (products.length === 0 ? 1 : (products[products.length - 1].id + 1))}
-        //products.push(data)
-        await dbLoadProds()
-        console.log(products)
-        io.sockets.emit('refreshProds', products)
-    })
+
+  refreshTables()
+  socket.emit('refreshProds', products)
+  console.log('Usuario conectado')
+
+// message sockets
+
+  socket.on('message', async (data) =>{
+      messageToDB(data)
+      await dbLoadMessages()
+      io.sockets.emit('refresh', messages)
+  })
+  socket.emit('refresh', messages)
+  
+// product sockets
+
+  socket.on('newProd', async (data) =>{
+      console.log(data)
+      await productToDb(data)
+      await dbLoadProds()
+      io.sockets.emit('refreshProds', products)
+  })
 })  
