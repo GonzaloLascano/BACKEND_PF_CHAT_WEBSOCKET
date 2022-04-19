@@ -8,7 +8,7 @@ function sendMsg() {
 function sendProduct(){
     let newProduct = { 
         title: document.getElementById('prodTitle').value, 
-        price: parseInt(document.getElementById('prodPrice').value), 
+        price: document.getElementById('prodPrice').value,
         thumbnail: document.getElementById('prodThumb').value
     }
     socket.emit('newProd', newProduct)
@@ -54,4 +54,10 @@ socket.on('refresh', (data) => {
 socket.on('refreshProds', (data) => {
     handleRenderer(data)
     console.log(data)
+})
+
+socket.on('warning', (data) => {
+    console.log(data)
+    let alertWarning = data
+    alert(alertWarning)
 })

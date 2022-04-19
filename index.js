@@ -21,7 +21,7 @@ knex.schema
   .createTable(prodTableName, (table) => {
     table.increments('id', 10)
     table.string('title', 200)
-    table.integer('price', 5)
+    table.decimal('price', 5, 2)
     table.string('thumbnail', 300)
   })
   .then(() => console.log('products table created'))
@@ -41,6 +41,30 @@ knex.schema
 
 let messages = []
 let products = []
+emailRegex = /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})$/
+
+function formValidation(data) {
+  if (data.price) {
+    if (Number(data.price)) {
+      data.price = Number(data.price)
+      return true
+    }
+    else{
+      return false
+    }
+  }
+  else if (data.user) {
+    if (emailRegex.test(data.user)) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+  else {
+    return true
+  }
+}
 
 /*refreshes both lists at once*/
 async function refreshTables(){
@@ -116,18 +140,34 @@ io.on('connection', (socket) => {
 // message sockets
 
   socket.on('message', async (data) =>{
+    let warning
+    let validation = formValidation(data)
+    if (validation){
       messageToDB(data)
       await dbLoadMessages()
       io.sockets.emit('refresh', messages)
+    }
+    else {
+      let warning = 'please submit a proper email address'
+      socket.emit('warning', warning)
+    }
   })
   socket.emit('refresh', messages)
   
 // product sockets
 
   socket.on('newProd', async (data) =>{
-      console.log(data)
-      await productToDb(data)
-      await dbLoadProds()
-      io.sockets.emit('refreshProds', products)
+    console.log(data)
+    let validation = formValidation(data)
+    if (validation) {
+        await productToDb(data)
+        await dbLoadProds()
+        io.sockets.emit('refreshProds', products)
+    }
+    else {
+      let warning = 'Price must be a number!'
+      socket.emit('warning', validation)
+    }
+      
   })
 })  
