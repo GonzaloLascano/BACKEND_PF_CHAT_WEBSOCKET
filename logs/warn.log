@@ -1,0 +1,80 @@
+[2022-09-08T15:28:41.298] [WARN] warn - log in required
+[2022-09-08T15:29:16.369] [WARN] warn - log in required
+[2022-09-08T15:30:00.690] [WARN] warn - log in required
+[2022-09-08T15:30:10.512] [WARN] warn - invalid password
+[2022-09-08T15:30:26.310] [WARN] warn - invalid password
+[2022-09-08T15:37:29.055] [WARN] warn - log in required
+[2022-09-08T15:37:47.680] [WARN] warn - log in required
+[2022-09-08T15:38:55.715] [WARN] warn - log in required
+[2022-09-08T16:10:50.208] [WARN] warn - log in required
+[2022-09-08T17:14:58.423] [WARN] warn - log in required
+[2022-09-08T17:22:16.013] [WARN] warn - log in required
+[2022-09-08T17:33:08.353] [WARN] warn - log in required
+[2022-09-08T17:43:29.045] [WARN] warn - log in required
+[2022-09-08T17:54:38.769] [WARN] warn - log in required
+[2022-09-10T18:02:19.515] [WARN] warn - invalid password
+[2022-09-10T18:03:04.798] [WARN] warn - invalid password
+[2022-09-10T18:17:37.630] [WARN] warn - log in required
+[2022-09-10T18:21:54.653] [WARN] warn - log in required
+[2022-09-21T22:29:32.441] [WARN] warn - log in required
+[2022-10-27T19:22:00.500] [WARN] warn - { message: 'product wasnt found', null: null }
+[2022-10-27T19:34:40.945] [WARN] warn - { message: 'product wasnt found', null: null }
+[2022-10-27T19:40:54.566] [WARN] warn - { message: 'product wasnt found', null: null }
+[2022-10-27T19:42:24.394] [WARN] warn - { message: 'product wasnt found', null: null }
+[2022-10-27T19:47:29.796] [WARN] warn - { message: 'product wasnt found', null: null }
+[2022-10-29T20:11:30.939] [WARN] warn - { message: 'Chart wasnt found', null: null }
+[2022-11-01T00:12:53.262] [WARN] warn - { message: 'Chart wasnt found', found: false }
+[2022-11-01T00:14:24.937] [WARN] warn - { message: 'Chart wasnt found', found: false }
+[2022-11-03T17:33:39.002] [WARN] warn - log in required
+[2022-11-03T18:44:11.652] [WARN] warn - log in required
+[2022-11-03T19:03:31.516] [WARN] warn - log in required
+[2022-11-03T19:27:19.109] [WARN] warn - log in required
+[2022-11-03T19:31:27.281] [WARN] warn - log in required
+[2022-11-03T19:50:04.768] [WARN] warn - log in required
+[2022-11-03T19:56:50.644] [WARN] warn - log in required
+[2022-11-03T20:13:20.203] [WARN] warn - log in required
+[2022-11-04T00:17:04.187] [WARN] warn - { type: 'password', message: 'incorrect password!' }
+[2022-11-04T00:20:06.072] [WARN] warn - { type: 'password', message: 'incorrect password!' }
+[2022-11-04T00:21:44.094] [WARN] warn - { type: 'password', message: 'incorrect password!' }
+[2022-11-04T00:23:19.297] [WARN] warn - { type: 'password', message: 'incorrect password!' }
+[2022-11-04T00:24:51.335] [WARN] warn - { type: 'password', message: 'incorrect password!' }
+[2022-11-04T00:29:27.331] [WARN] warn - { type: 'password', message: 'incorrect password!' }
+[2022-11-04T00:29:44.260] [WARN] warn - { type: 'password', message: 'incorrect password!' }
+[2022-11-04T00:30:21.536] [WARN] warn - { type: 'password', message: 'incorrect password!' }
+[2022-11-04T00:30:31.534] [WARN] warn - { type: 'password', message: 'incorrect password!' }
+[2022-11-04T01:00:37.629] [WARN] warn - { type: 'password', message: 'incorrect password!' }
+[2022-11-04T01:01:18.556] [WARN] warn - null
+[2022-11-04T01:04:03.794] [WARN] warn - null
+[2022-11-04T01:06:10.739] [WARN] warn - null
+[2022-11-04T01:07:10.566] [WARN] warn - null
+[2022-11-04T01:09:46.380] [WARN] warn - null
+[2022-11-04T01:10:58.681] [WARN] warn - { type: 'invalidUser', message: 'user is not registered!' }
+[2022-11-04T01:13:41.518] [WARN] warn - { type: 'invalidUser', message: 'user is not registered!' }
+[2022-11-04T01:14:19.652] [WARN] warn - { type: 'invalidUser', message: 'user is not registered!' }
+[2022-11-04T01:14:58.520] [WARN] warn - { type: 'invalidUser', message: 'user is not registered!' }
+[2022-11-04T01:15:43.002] [WARN] warn - { type: 'invalidUser', message: 'user is not registered!' }
+[2022-11-04T01:15:56.659] [WARN] warn - { type: 'invalidUser', message: 'user is not registered!' }
+[2022-11-04T01:16:09.799] [WARN] warn - { type: 'invalidUser', message: 'user is not registered!' }
+[2022-11-04T01:17:15.727] [WARN] warn - { type: 'invalidUser', message: 'user is not registered!' }
+[2022-11-04T01:24:03.686] [WARN] warn - { type: 'invalidUser', message: 'user is not registered!' }
+[2022-11-04T01:27:08.079] [WARN] warn - { type: 'password', message: 'incorrect password!' }
+[2022-11-04T01:41:02.727] [WARN] warn - invalidPassword: incorrect password!
+[2022-11-04T01:42:47.059] [WARN] warn - invalidPassword: incorrect password!
+[2022-11-04T01:43:19.154] [WARN] warn - invalidPassword: incorrect password!
+[2022-11-04T01:44:46.154] [WARN] warn - invalidPassword: incorrect password!
+[2022-11-04T01:50:45.528] [WARN] warn - invalidPassword: incorrect password!
+[2022-11-04T01:52:17.596] [WARN] warn - invalidPassword: incorrect password!
+[2022-11-04T01:53:16.721] [WARN] warn - invalidPassword: incorrect password!
+[2022-11-04T01:53:50.391] [WARN] warn - invalidPassword: incorrect password!
+[2022-11-05T17:57:19.626] [WARN] warn - query might be product code instead of Object id.
+[2022-11-06T20:06:21.134] [WARN] warn - log in required
+[2022-11-06T20:08:04.773] [WARN] warn - log in required
+[2022-11-06T20:09:59.366] [WARN] warn - log in required
+[2022-11-06T20:13:57.702] [WARN] warn - log in required
+[2022-11-06T20:22:11.592] [WARN] warn - log in required
+[2022-11-06T20:29:17.930] [WARN] warn - invalidPassword: incorrect password!
+[2022-11-06T20:31:15.346] [WARN] warn - invalidPassword: incorrect password!
+[2022-11-06T20:31:31.667] [WARN] warn - invalidPassword: incorrect password!
+[2022-11-06T20:31:48.842] [WARN] warn - invalidPassword: incorrect password!
+[2022-11-06T20:37:35.881] [WARN] warn - log in required
+[2022-11-07T01:58:56.708] [WARN] warn - log in required

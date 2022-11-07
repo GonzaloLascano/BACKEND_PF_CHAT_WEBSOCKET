@@ -18,9 +18,13 @@
   "homepage": "https://github.com/GonzaloLascano/CH_BE_08#readme",
   "dependencies": {
     "@faker-js/faker": "^7.3.0",
+    "dot-env": "^0.0.1",
+    "dotenv": "^16.0.3",
     "express": "^4.17.3",
     "express-handlebars": "^5.2.0",
     "knex": "^0.95.15",
+    "log4js": "^6.7.0",
+    "mongoose": "^6.7.1",
     "mysql": "^2.18.1",
     "socket.io": "^4.4.1",
     "sqlite3": "^5.0.2"
